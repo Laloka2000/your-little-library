@@ -1,0 +1,80 @@
+body {
+  color: #111;
+  font-size: larger;
+  background-image: url("clouds.png");
+  display: grid;
+  text-align: center;
+  background-size: cover;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+#menu1 {
+  float: center;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 1em 0;
+  list-style-type: none;
+  background-color: rgb(224, 224, 224);
+  }
+#menu1 li { display: inline }
+
+#menu1 a {
+    float: left;
+    padding: 0.25em 1em;
+    margin: 0.25em 0 0.25em 1em;
+    color: rgb(102, 0, 51);
+    text-decoration: none;
+}
+.jobb
+{
+    float: right;
+}
+#menu1 a:hover {background-color: rgb(102, 102, 0)}
+  
+*{
+  box-sizing: border-box;
+}
+h1{
+  font-size: x-large;
+  font-family: Trebuchet MS, sans-serif;
+  font-style: italic;
+  text-decoration-thickness: 3px;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  text-decoration-color: black;
+}
+input:focus{
+    background-color: #508CA4;
+}
+form{
+  display: block;
+  line-height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  background-color: rgba(213, 213, 213, 0.6);
+  padding-top: 35px;
+  padding-bottom: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 9px;
+}
+input[type="text"]{
+  display: ruby-text;
+  border: #508CA4;
+  border: 1px solid black;
+}
+button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+input[type="file"]{
+display: inline-block;
+border: #508CA4;
+}
+label{
+  font-family: Trebuchet MS, sans-serif;
+  display: block;
+  text-align: center;
+}

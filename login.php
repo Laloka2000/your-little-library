@@ -1,0 +1,49 @@
+<?php
+require_once("fuggvenyek.php");
+$user=jsonBeolvas("user.json");
+$hibak=[];
+session_start();
+$jo=true;
+if(!letezik("Felhasznalologin"))
+{
+    $jo=false;
+}
+
+if(!letezik("Jelszologin"))
+{
+    $jo=false;
+}
+if($jo)
+{
+    foreach( $user as $adat)
+    {  
+        if($adat["Felhasznalo"]==$_POST["Felhasznalologin"])
+        {
+            if(password_verify($_POST["Jelszologin"],$adat["Jelszo"]))
+            {
+                $jo=true;
+            }else
+            {
+                $jo=false;
+            }
+            break;
+        }else
+        {
+            $jo=false;
+        }
+    }
+}
+if(!$jo)
+{
+    $hibak["login"]="Nem jó!";
+}
+if(empty($hibak))
+{
+    $_SESSION["Felhasznalo"]=$_POST["Felhasznalologin"];
+    atiranyit("index");
+}else
+{
+    $_SESSION["Hiba"]=$hibak;
+    atiranyit("account");
+}
+?>

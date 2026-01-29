@@ -1,0 +1,46 @@
+#menu1 {
+	float: left;
+	width: 100%;
+	padding: 0;
+	margin: 0 0 1em 0;
+	list-style-type: none;
+	background-color: #508CA4;
+	}
+#menu1 li { display: inline }
+
+#menu1 a {
+		float: left;
+		padding: 0.25em 1em;
+		margin: 0.25em 0 0.25em 1em;
+		color: rgb(255, 255, 255);
+		text-decoration: none;
+}
+.jobb
+{
+    float: right;
+}
+#menu1 a:hover {
+    background-color: #BFD7EA;
+    color: black;}
+  
+*{
+	box-sizing: border-box;
+}
+.konyv
+{
+	float: left;
+	width: 100%;
+	padding: 10px; 
+	margin: 0 0 1em 0;	
+}
+.hiba
+{
+	margin: 0 0 1em 0;
+	padding: 0;
+	color: red;
+	display: inline-block;
+}
+body{
+    background-color: #91AEC1;
+
+}

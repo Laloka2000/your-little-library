@@ -1,0 +1,108 @@
+#menu1 {
+	float: center;
+	width: 100%;
+	padding: 0;
+	margin: 0 0 1em 0;
+	list-style-type: none;
+	background-color: rgb(224, 224, 224);
+	}
+#menu1 li { display: inline }
+
+#menu1 a {
+		float: left;
+		padding: 0.25em 1em;
+		margin: 0.25em 0 0.25em 1em;
+		color: rgb(255,255,255);
+		text-decoration: none;
+		font-size: larger;
+		font-family:'Times New Roman', Times, serif;
+}
+.jobb
+{
+    float: right;
+}
+#menu1 a:hover {background-color: rgb(102, 0, 51)}
+  
+*{
+	box-sizing: border-box;
+}
+.konyv
+{
+	float: left;
+	width: 100%;
+	padding: 10px; 
+	margin: 0 0 1em 0;	
+}
+.hiba
+{
+	margin: 0 0 1em 0;
+	padding: 0;
+	color: red;
+	display: inline-block;
+}
+body{
+	background-image: url("magicbook.jpg");
+	background-attachment: fixed;
+	text-align: justify;
+	display: grid;
+	margin-top: 25px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+#menu3{
+	color: deeppink;
+	font-size: medium;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	display: table; 
+	margin: 0 auto;
+	list-style-type: none;
+}
+#menu3 li{
+	color: blue;
+
+
+}
+h2{
+	color: aquamarine;
+	text-align: center;
+	font-size: larger;
+	font-family: 'Times New Roman', Times, serif;
+}
+image{
+	position: absolute;
+	right: 300px;
+	width: max-content;
+	height: max-content;
+}
+p{
+	color:	orange;
+	text-shadow: none;
+	text-align: left;
+	font-size: medium;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h3{
+	color: aquamarine;
+	text-align: center;
+	font-size: larger;
+	font-family: 'Times New Roman', Times, serif;
+}
+h4{
+	color: aquamarine;
+	text-align: left;
+	font-family: 'Times New Roman', Times, serif;
+}
+li{
+	color: orange;
+	text-shadow: none;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: medium;
+}
+#menu4{
+	text-align: center;
+}
+#menu4 li{
+	color:red;
+	font-size: xx-large;
+	list-style-type: none;
+}
