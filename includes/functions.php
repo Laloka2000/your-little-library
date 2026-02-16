@@ -1,29 +1,60 @@
 <?php
-function letezik($string)
-{
-    return isset($_POST[$string]) && strlen(trim($_POST[$string])) != 0;
+
+function initSession(){
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+}
+function isLoggedIn(){
+    initSession();
+    return isset($_SESSION['user_id']) && isset($_SESSION['username']);
 }
 
-function jsonBeolvas($filenev)
-{
-    return json_decode(file_get_contents($filenev), true);
+function requireLogin(){
+    if(!isLoggedIn()){
+        redirect('login.php');
+    }
 }
 
-function jsonKiir($filenev, $adat)
-{
-    file_put_contents($filenev, json_encode($adat, JSON_PRETTY_PRINT));
+function redirect($page, $params = []){
+    $url = $page;
+    if(!empty($params)){
+        $url .= '?' . http_build_query($params);
+    }
+    header("Location: $url");
 }
 
-function atiranyit($oldal)
-{
-    header('Location:' . $oldal . '.php');
-    die;
+function e($string){
+    return htmlspecialchars($string, ENT_QUOTES,"UFT-8");
 }
 
-function jsonUjelem($filenev, $ujelem)
-{
-    $adat = jsonBeolvas($filenev);
-    $adat[] = $ujelem;
-    jsonKiir($filenev, $adat);
+function getFlash($key){
+    initSession();
+    if(isset($_SESSION['flash'][$key])){
+        $message = $_SESSION['flash'][$key];
+        unset($_SESSION['flash'][$key]);
+        return $message;
+    }
+    return null;
 }
+
+function setFlash($key, $message){
+    initSession();
+    $_SESSION['flash'][$key] = $message;
+}
+
+function formatDate($date, $format = 'Y-m-d H:i'){
+    return date($format, strtotime($date));
+}
+
+function formatFileSize($bytes){
+    $units = ['B', 'KB', 'MB', 'GB'];
+    $i = 0;
+    while($bytes >= 1024 && $i < count($units) - 1){
+        $bytes /= 1024;
+        $i++;
+    }
+    return round($bytes, 2) . ' ' . $units[$i];
+}
+
 ?>
