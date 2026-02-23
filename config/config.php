@@ -1,13 +1,14 @@
 <?php
 //Edit later with database credentials
 //Database Configuration
-define("DB_HOST", "sql310.infinityfree.com");
+define("DB_HOST", "sql302.infinityfree.com");
 define("DB_NAME", "if0_41174388_library_db");
-define("DB_USER", "if0_41174388_libraryuser");
+define("DB_USER", "if0_41174388");
 define("DB_PASS", "0qt3UDjqhpZZ7Y9");
 define("DB_CHARSET", "utf8mb4");
 //Site Configuration
 define("SITE_NAME", "Online Library");
+define('SITE_URL', 'https://yoursite.infinityfreeapp.com');
 //File Upload Settings
 define('UPLOAD_MAX_SIZE', 10485760); // 10MB in bytes
 define('ALLOWED_IMAGE_TYPES', ['image/jpeg', 'image/png', 'image/jpg']);
