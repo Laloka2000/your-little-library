@@ -1,8 +1,8 @@
 <?php
 
-require_once '../config.php';
-require_once '../includes/functions.php';
-require_once '../includes/Book.php';
+require_once 'config.php';
+require_once 'includes/functions.php';
+require_once 'includes/Book.php';
 
 initSession();
 requireLogin();
