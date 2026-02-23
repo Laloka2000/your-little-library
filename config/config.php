@@ -1,10 +1,10 @@
 <?php
 //Edit later with database credentials
 //Database Configuration
-define("DB_HOST", "localhost");
-define("DB_NAME", "library_db");
-define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_HOST", "sql310.infinityfree.com");
+define("DB_NAME", "if0_41174388_library_db");
+define("DB_USER", "if0_41174388_libraryuser");
+define("DB_PASS", "0qt3UDjqhpZZ7Y9");
 define("DB_CHARSET", "utf8mb4");
 //Site Configuration
 define("SITE_URL", "http://localhost/library-app");
