@@ -8,7 +8,7 @@ initSession();
 requireLogin();
 
 $book = new Book();
-$myBooks = $book->getBooksByUserId($_SESSION['user_id']);
+$myBooks = $book->getBookByUser($_SESSION['user_id']);
 $flashSuccess = getFlash('success');
 
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {

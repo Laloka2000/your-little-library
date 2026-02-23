@@ -1,1 +1,3 @@
-*.database.sql
+config/config.php
+public/uploads/books/*
+public/uploads/covers/*
