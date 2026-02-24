@@ -1,0 +1,10 @@
+{
+    "name": "laszlo/your-little-library",
+    "description": "Your little library",
+    "type": "project",
+    "require": {
+        "php": "^8.1"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

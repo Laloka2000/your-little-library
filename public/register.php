@@ -1,7 +1,7 @@
 <?php
 require_once 'config.php';
 require_once 'includes/functions.php';
-require_once 'includes/user.php';
+require_once 'includes/User.php';
 
 initSession();
 
