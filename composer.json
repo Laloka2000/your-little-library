@@ -1,6 +1,7 @@
 {
     "name": "laszlo/your-little-library",
     "description": "Your little library",
+    "license": "proprietary",
     "type": "project",
     "require": {
         "php": "^8.1"
