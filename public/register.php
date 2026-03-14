@@ -1,60 +1,56 @@
 <?php
-require_once 'config.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require_once 'config/config.php';
 require_once 'includes/functions.php';
 require_once 'includes/User.php';
 
-initSession();
+session_start();
 
-if (isLoggedIn()){
-    redirect('index.php');
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
 }
 
 $errors = [];
-$formData = [];
+$username = '';
+$email = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $confirmPassword = $_POST['confirm_password'] ?? '';
-
-    $formData = ['username' => $username, 'email' => $email];
-
-    if(empty($username)){
-        $erros[] = 'A felhasználónév megadása kötelező.';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+    
+    if ($password !== $password2) {
+        $errors['password2'] = 'A két jelszó nem egyezik.';
     }
-
-    if(empty($password)){
-        $errors[] = 'A jelszó megadása kötelező.';
-    }
-
-    if(empty($email)){
-        $errors[] = 'Az email cím megadása kötelező.';
-    } 
-
-    if($password !== $confirmPassword){
-        $errors[] = 'A két jelszó nem egyezik.';
-    }
-
-    if(empty($errors)){
-        $user = new User();
-        $result = $user->register($username, $email, $password);
-
-        if ($result['success']){
-            setFlash('success', 'Sikeres regisztráció! Most már bejelentkezhetsz.');
-            redirect('login.php');
-        } else {
-            $errors[] = $result['error'];
+    
+    if (empty($errors)) {
+        try {
+            $user = new User();
+            $result = $user->register($username, $email, $password);
+            
+            if ($result['success']) {
+                $_SESSION['user_id'] = $result['user_id'];
+                $_SESSION['username'] = $username;
+                header('Location: index.php');
+                exit;
+            } else {
+                $errors = $result['errors'];
+            }
+        } catch (Exception $e) {
+            $errors['general'] = 'Hiba: ' . $e->getMessage();
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regisztráció - <?php echo SITE_NAME; ?></title>
+    <title>Regisztráció</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="auth-page">
@@ -63,42 +59,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             <h1>Regisztráció</h1>
             
             <?php if (isset($errors['general'])): ?>
-                <div class="alert alert-error"><?php echo e($errors['general']); ?></div>
+                <div class="alert alert-error">
+                    <?php echo htmlspecialchars($errors['general']); ?>
+                </div>
             <?php endif; ?>
             
-            <form method="POST" action="">
+            <form method="POST">
                 <div class="form-group">
-                    <label for="username">Felhasználónév</label>
-                    <input type="text" id="username" name="username" 
-                           value="<?php echo e($formData['username'] ?? ''); ?>" required>
+                    <label>Felhasználónév</label>
+                    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
                     <?php if (isset($errors['username'])): ?>
-                        <span class="error"><?php echo e($errors['username']); ?></span>
+                        <span class="error"><?php echo htmlspecialchars($errors['username']); ?></span>
                     <?php endif; ?>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email cím</label>
-                    <input type="email" id="email" name="email" 
-                           value="<?php echo e($formData['email'] ?? ''); ?>" required>
+                    <label>Email cím</label>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
                     <?php if (isset($errors['email'])): ?>
-                        <span class="error"><?php echo e($errors['email']); ?></span>
+                        <span class="error"><?php echo htmlspecialchars($errors['email']); ?></span>
                     <?php endif; ?>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Jelszó</label>
-                    <input type="password" id="password" name="password" required>
+                    <label>Jelszó</label>
+                    <input type="password" name="password" required>
                     <small>Legalább 8 karakter, nagybetű, kisbetű és szám.</small>
                     <?php if (isset($errors['password'])): ?>
-                        <span class="error"><?php echo e($errors['password']); ?></span>
+                        <span class="error"><?php echo htmlspecialchars($errors['password']); ?></span>
                     <?php endif; ?>
                 </div>
                 
                 <div class="form-group">
-                    <label for="confirm_password">Jelszó megerősítése</label>
-                    <input type="password" id="confirm_password" name="confirm_password" required>
-                    <?php if (isset($errors['confirm_password'])): ?>
-                        <span class="error"><?php echo e($errors['confirm_password']); ?></span>
+                    <label>Jelszó megerősítése</label>
+                    <input type="password" name="password2" required>
+                    <?php if (isset($errors['password2'])): ?>
+                        <span class="error"><?php echo htmlspecialchars($errors['password2']); ?></span>
                     <?php endif; ?>
                 </div>
                 
